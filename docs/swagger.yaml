@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+    description: ''
+    version: 1.0.0
+    title: TEST API
+tags:
+    - name: company
+      description: Operations about company
+paths:
+
+servers:
+    - url: 'http://127.0.0.1/api'
+      description: Local server
+components:
+    securitySchemes:
+        authToken:
+            type: apiKey
+            name: X-AUTH-TOKEN
+            in: header
+    schemas:
+
