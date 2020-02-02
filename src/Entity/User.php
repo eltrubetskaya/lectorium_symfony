@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -71,6 +72,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", unique=true, nullable=true)
      */
     private $apiToken;
+
+    public function __construct()
+    {
+        $this->setRoles(['ROLE_USER']);
+    }
 
     public function getId(): ?int
     {
@@ -244,4 +250,16 @@ class User implements UserInterface
     {
         $this->apiToken = $apiToken;
     }
+
+    /**
+     * @return $this
+     * @throws \Exception
+     */
+    public function generateApiToken()
+    {
+        $this->apiToken = (string) Uuid::uuid4();
+
+        return $this;
+    }
+
 }
