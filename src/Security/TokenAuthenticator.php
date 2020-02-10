@@ -74,10 +74,8 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         $data = [
-            'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
-
-            // or to translate this message
-            // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
+//            'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
+            'message' => 'Access token does not have the required scope'
         ];
 
         return new JsonResponse($data, Response::HTTP_FORBIDDEN);
@@ -90,7 +88,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     {
         $data = [
             // you might translate this message
-            'message' => 'Authentication Required'
+            'message' => 'API key is missing or invalid'
         ];
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);

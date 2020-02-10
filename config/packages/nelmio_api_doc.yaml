@@ -1,15 +1,15 @@
 nelmio_api_doc:
     documentation:
         info:
-            title: My App
+            title: Online Med Service
             description: This is an awesome app!
             version: 1.0.0
         securityDefinitions:
-            authToken:
+            ApiKeyAuth:
                 type: apiKey
-                description: 'Value: X-AUTH-TOKEN'
-                name: X-AUTH-TOKEN
-                in: header
+                description: 'Value: {apiKey}'
+                name: X-AUTH-TOKEN # name of the header, query parameter or cookie
+                in: header         # can be "header", "query" or "cookie"
     areas: # to filter documented areas
         path_patterns:
             - ^/api(?!/doc$) # Accepts routes under /api except /api/doc

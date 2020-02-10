@@ -6,7 +6,7 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
+        api_provider:
             entity:
                 class: App\Entity\User
                 property: username
@@ -14,7 +14,8 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        api:
+            provider: api_provider
             anonymous: ~
             logout: ~
 
@@ -32,3 +33,4 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/api/user, roles: ROLE_USER }
+         - { path: ^/api/logout$, roles: ROLE_USER }

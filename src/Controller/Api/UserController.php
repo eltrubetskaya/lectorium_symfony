@@ -28,7 +28,7 @@ class UserController extends AbstractController
      * )
      * @SWG\Response(
      *     response=200,
-     *     description="Returns the rewards of an user",
+     *     description="OK (successfully authenticated)",
      * )
      * @SWG\Tag(name="User")
      *
@@ -66,7 +66,7 @@ class UserController extends AbstractController
 
         return new JsonResponse([
             'apiToken' => $user->getApiToken()
-        ]);
+        ], Response::HTTP_OK);
     }
 
     /**
@@ -85,8 +85,8 @@ class UserController extends AbstractController
      *     )
      * )
      * @SWG\Response(
-     *     response=200,
-     *     description="Returns the rewards of an user",
+     *     response=201,
+     *     description="User created",
      * )
      * @SWG\Tag(name="User")
      *
@@ -102,7 +102,7 @@ class UserController extends AbstractController
         if (!$data) {
             return $this->json([], Response::HTTP_BAD_REQUEST);
         }
-        $data = json_decode($data);
+        $data = json_decode($data, false);
 
         $user = new User();
         $user
@@ -118,6 +118,38 @@ class UserController extends AbstractController
         $this->getDoctrine()->getManager()->persist($user);
         $this->getDoctrine()->getManager()->flush();
 
-        return new JsonResponse([], Response::HTTP_CREATED);
+        return new JsonResponse(['message' => 'User created'], Response::HTTP_CREATED);
+    }
+
+    /**
+     * @Route("/logout", name="user_logout", methods={"POST"})
+     *
+     * @SWG\Response(
+     *     response=204,
+     *     description="Lgout success",
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="API key is missing or invalid",
+     * )
+     * @SWG\Response(
+     *     response=403,
+     *     description="Access token does not have the required scope",
+     * )
+     * @SWG\Tag(name="User")
+     * @Security(name="ApiKeyAuth")
+     *
+     * @return JsonResponse
+     * @throws \Exception
+     */
+    public function logout(): JsonResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $user->setApiToken(null);
+        $this->getDoctrine()->getManager()->flush();
+
+        return new JsonResponse([], Response::HTTP_NO_CONTENT);
     }
 }
