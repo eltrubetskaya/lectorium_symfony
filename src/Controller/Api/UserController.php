@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Swagger\Annotations as SWG;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * @Route("/api")
@@ -87,7 +89,7 @@ class UserController extends AbstractController
      *          @SWG\Property(property="username", type="string", example="testuser"),
      *          @SWG\Property(property="planePassword", type="string", example="testuser"),
      *          @SWG\Property(property="address", type="string", example="testuser"),
-     *          @SWG\Property(property="phone", type="string", example="testuser"),
+     *          @SWG\Property(property="phone", type="string", example="+380999999999"),
      *          @SWG\Property(property="gender", type="string", example="testuser"),
      *     )
      * )
@@ -95,21 +97,36 @@ class UserController extends AbstractController
      *     response=201,
      *     description="User created",
      * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Invalid fields: ...",
+     * )
+     * @SWG\Response(
+     *     response=406,
+     *     description="Empty content.",
+     * )
      * @SWG\Tag(name="User")
      *
      * @param Request $request
+     *
+     * @param ValidatorInterface $validator
      *
      * @param UserPasswordEncoderInterface $encoder
      *
      * @return JsonResponse
      */
-    public function signUp(Request $request, UserPasswordEncoderInterface $encoder): JsonResponse
-    {
-        $data = $request->getContent();
-        if (!$data) {
-            return $this->json([], Response::HTTP_BAD_REQUEST);
+    public function signUp(
+        Request $request,
+        ValidatorInterface $validator,
+        UserPasswordEncoderInterface $encoder
+    ): JsonResponse {
+        $data = json_decode($request->getContent(), false);
+        if (!$data || !is_object($data)) {
+            return $this->json([
+                'code' => Response::HTTP_NOT_ACCEPTABLE,
+                'message' => 'Empty content.'.gettype($data)
+            ], Response::HTTP_NOT_ACCEPTABLE);
         }
-        $data = json_decode($data, false);
 
         $user = new User();
         $user
@@ -122,6 +139,22 @@ class UserController extends AbstractController
             ->setPhone($data->phone)
             ->setSex($data->gender)
         ;
+
+        $errors = $validator->validate($user);
+
+        if (\count($errors) > 0) {
+            $message = 'Invalid fields: ';
+            $fields = [];
+            /** @var ConstraintViolation $error */
+            foreach ($errors as $error) {
+                $fields[] = $error->getPropertyPath() . ' (' . $error->getMessage() . ')';
+            }
+
+            return $this->json([
+                'message' => $message . implode(', ', $fields),
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
         $this->getDoctrine()->getManager()->persist($user);
         $this->getDoctrine()->getManager()->flush();
 
