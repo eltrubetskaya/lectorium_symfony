@@ -30,6 +30,14 @@ class UserController extends AbstractController
      *     response=200,
      *     description="OK (successfully authenticated)",
      * )
+     * @SWG\Response(
+     *     response=400,
+     *     description="Login failed: Username or password is not correct.",
+     * )
+     * @SWG\Response(
+     *     response=406,
+     *     description="Empty content.",
+     * )
      * @SWG\Tag(name="User")
      *
      * @param Request $request
@@ -40,14 +48,13 @@ class UserController extends AbstractController
      */
     public function login(Request $request, UserPasswordEncoderInterface $encoder): JsonResponse
     {
-        $data = $request->getContent();
-        if (!$data) {
+        $data = json_decode($request->getContent(), false);
+        if (!$data || !is_object($data)) {
             return $this->json([
-                'code' => Response::HTTP_BAD_REQUEST,
-                'message' => 'empty content'
-            ], Response::HTTP_BAD_REQUEST);
+                'code' => Response::HTTP_NOT_ACCEPTABLE,
+                'message' => 'Empty content.'.gettype($data)
+            ], Response::HTTP_NOT_ACCEPTABLE);
         }
-        $data = json_decode($data);
 
         /** @var User $user */
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
