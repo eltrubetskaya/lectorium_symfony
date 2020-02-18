@@ -91,6 +91,7 @@ class UserController extends AbstractController
      *          @SWG\Property(property="address", type="string", example="testuser"),
      *          @SWG\Property(property="phone", type="string", example="+380999999999"),
      *          @SWG\Property(property="gender", type="string", example="testuser"),
+     *          @SWG\Property(property="additionalInfo", type="string", example="testuser"),
      *     )
      * )
      * @SWG\Response(
@@ -138,6 +139,7 @@ class UserController extends AbstractController
             ->setAddress($data->address)
             ->setPhone($data->phone)
             ->setSex($data->gender)
+            ->setAdditionalInfo($data->additionalInfo)
         ;
 
         $errors = $validator->validate($user);

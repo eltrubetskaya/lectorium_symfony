@@ -1,0 +1,24 @@
+App\Entity\Schedule:
+    schedule_1:
+        doctor: "@doctor_1"
+        day: "Monday"
+        startTime: <((new \DateTime())->setTime(9, 00))>
+        endTime: <((new \DateTime())->setTime(9, 30))>
+    schedule_2:
+        doctor: "@doctor_1"
+        day: "Monday"
+        startTime: <((new \DateTime())->setTime(9, 30))>
+        endTime: <((new \DateTime())->setTime(10, 00))>
+    schedule_3:
+        doctor: "@doctor_1"
+        day: "Monday"
+        startTime: <((new \DateTime())->setTime(10, 00))>
+        endTime: <((new \DateTime())->setTime(10, 30))>
+        enabled: 0
+    schedule_4:
+        doctor: "@doctor_1"
+        day: "Monday"
+        startTime: <((new \DateTime())->setTime(10, 30))>
+        endTime: <((new \DateTime())->setTime(11, 00))>
+
+

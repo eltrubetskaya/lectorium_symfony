@@ -22,12 +22,16 @@ class Schedule
     private $day;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(type="time")
      */
     private $startTime;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(type="time")
      */
     private $endTime;
 
@@ -38,7 +42,7 @@ class Schedule
 
     /**
      * @var Doctor
-     * @ORM\ManyToMany(targetEntity="Doctor", inversedBy="schedule")
+     * @ORM\ManyToOne(targetEntity="Doctor", inversedBy="schedule")
      */
     private $doctor;
 
@@ -60,30 +64,6 @@ class Schedule
     public function setDay(string $day): self
     {
         $this->day = $day;
-
-        return $this;
-    }
-
-    public function getStartTime(): ?\DateTimeInterface
-    {
-        return $this->startTime;
-    }
-
-    public function setStartTime(\DateTimeInterface $startTime): self
-    {
-        $this->startTime = $startTime;
-
-        return $this;
-    }
-
-    public function getEndTime(): ?\DateTimeInterface
-    {
-        return $this->endTime;
-    }
-
-    public function setEndTime(\DateTimeInterface $endTime): self
-    {
-        $this->endTime = $endTime;
 
         return $this;
     }
@@ -114,5 +94,43 @@ class Schedule
     public function setDoctor(Doctor $doctor): void
     {
         $this->doctor = $doctor;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartTime(): \DateTime
+    {
+        return $this->startTime;
+    }
+
+    /**
+     * @param \DateTime $value
+     * @return $this
+     */
+    public function setStartTime(\DateTime $value)
+    {
+        $this->startTime = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEndTime(): \DateTime
+    {
+        return $this->endTime;
+    }
+
+    /**
+     * @param \DateTime $value
+     * @return $this
+     */
+    public function setEndTime(\DateTime $value)
+    {
+        $this->endTime = $value;
+
+        return $this;
     }
 }
