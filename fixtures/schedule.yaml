@@ -1,24 +1,562 @@
 App\Entity\Schedule:
-    schedule_1:
+    #doctor 1
+    schedule_1_{Monday, Wednesday, Thursday}:
         doctor: "@doctor_1"
-        day: "Monday"
+        day: <current()>
         startTime: <((new \DateTime())->setTime(9, 00))>
         endTime: <((new \DateTime())->setTime(9, 30))>
-    schedule_2:
+    schedule_2_{Monday, Wednesday, Thursday}:
         doctor: "@doctor_1"
-        day: "Monday"
+        day: <current()>
         startTime: <((new \DateTime())->setTime(9, 30))>
         endTime: <((new \DateTime())->setTime(10, 00))>
-    schedule_3:
+    schedule_3_{Monday, Wednesday, Thursday}:
         doctor: "@doctor_1"
-        day: "Monday"
+        day: <current()>
         startTime: <((new \DateTime())->setTime(10, 00))>
         endTime: <((new \DateTime())->setTime(10, 30))>
-        enabled: 0
-    schedule_4:
+    schedule_4_{Monday, Wednesday, Thursday}:
         doctor: "@doctor_1"
-        day: "Monday"
+        day: <current()>
         startTime: <((new \DateTime())->setTime(10, 30))>
         endTime: <((new \DateTime())->setTime(11, 00))>
+    schedule_5_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 00))>
+        endTime: <((new \DateTime())->setTime(11, 30))>
+    schedule_6_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 30))>
+        endTime: <((new \DateTime())->setTime(12, 00))>
+    schedule_7_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 00))>
+        endTime: <((new \DateTime())->setTime(12, 30))>
+    schedule_8_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 30))>
+        endTime: <((new \DateTime())->setTime(13, 00))>
+    schedule_9_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 00))>
+        endTime: <((new \DateTime())->setTime(13, 30))>
+    schedule_10_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 30))>
+        endTime: <((new \DateTime())->setTime(14, 00))>
+    schedule_11_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 00))>
+        endTime: <((new \DateTime())->setTime(14, 30))>
+    schedule_12_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 30))>
+        endTime: <((new \DateTime())->setTime(15, 00))>
+    schedule_13_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 00))>
+        endTime: <((new \DateTime())->setTime(15, 30))>
+    schedule_15_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 30))>
+        endTime: <((new \DateTime())->setTime(16, 00))>
+    schedule_16_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 00))>
+        endTime: <((new \DateTime())->setTime(16, 30))>
+    schedule_17_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 30))>
+        endTime: <((new \DateTime())->setTime(17, 00))>
+    schedule_18_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 00))>
+        endTime: <((new \DateTime())->setTime(17, 30))>
+    schedule_19_{Monday, Wednesday, Thursday}:
+        doctor: "@doctor_1"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 30))>
+        endTime: <((new \DateTime())->setTime(18, 00))>
+    #doctor 2
+    schedule_23_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 00))>
+        endTime: <((new \DateTime())->setTime(10, 30))>
+    schedule_24_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 30))>
+        endTime: <((new \DateTime())->setTime(11, 00))>
+    schedule_25_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 00))>
+        endTime: <((new \DateTime())->setTime(11, 30))>
+    schedule_26_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 30))>
+        endTime: <((new \DateTime())->setTime(12, 00))>
+    schedule_27_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 00))>
+        endTime: <((new \DateTime())->setTime(12, 30))>
+    schedule_28_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 30))>
+        endTime: <((new \DateTime())->setTime(13, 00))>
+    schedule_29_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 00))>
+        endTime: <((new \DateTime())->setTime(13, 30))>
+    schedule_30_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 30))>
+        endTime: <((new \DateTime())->setTime(14, 00))>
+    schedule_31_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 00))>
+        endTime: <((new \DateTime())->setTime(14, 30))>
+    schedule_32_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 30))>
+        endTime: <((new \DateTime())->setTime(15, 00))>
+    schedule_33_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 00))>
+        endTime: <((new \DateTime())->setTime(15, 30))>
+    schedule_35_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 30))>
+        endTime: <((new \DateTime())->setTime(16, 00))>
+    schedule_36_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 00))>
+        endTime: <((new \DateTime())->setTime(16, 30))>
+    schedule_37_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 30))>
+        endTime: <((new \DateTime())->setTime(17, 00))>
+    schedule_38_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 00))>
+        endTime: <((new \DateTime())->setTime(17, 30))>
+    schedule_39_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 30))>
+        endTime: <((new \DateTime())->setTime(18, 00))>
+    schedule_21_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 00))>
+        endTime: <((new \DateTime())->setTime(18, 30))>
+    schedule_22_{Monday, Tuesday, Wednesday, Thursday}:
+        doctor: "@doctor_2"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 30))>
+        endTime: <((new \DateTime())->setTime(19, 00))>
 
+    #doctor 3
+    schedule_43_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 00))>
+        endTime: <((new \DateTime())->setTime(10, 30))>
+    schedule_44_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 30))>
+        endTime: <((new \DateTime())->setTime(11, 00))>
+    schedule_45_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 00))>
+        endTime: <((new \DateTime())->setTime(11, 30))>
+    schedule_46_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 30))>
+        endTime: <((new \DateTime())->setTime(12, 00))>
+    schedule_47_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 00))>
+        endTime: <((new \DateTime())->setTime(12, 30))>
+    schedule_48_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 30))>
+        endTime: <((new \DateTime())->setTime(13, 00))>
+    schedule_49_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 00))>
+        endTime: <((new \DateTime())->setTime(13, 30))>
+    schedule_50_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 30))>
+        endTime: <((new \DateTime())->setTime(14, 00))>
+    schedule_51_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 00))>
+        endTime: <((new \DateTime())->setTime(14, 30))>
+    schedule_52_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 30))>
+        endTime: <((new \DateTime())->setTime(15, 00))>
+    schedule_53_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 00))>
+        endTime: <((new \DateTime())->setTime(15, 30))>
+    schedule_54_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 30))>
+        endTime: <((new \DateTime())->setTime(16, 00))>
+    schedule_56_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 00))>
+        endTime: <((new \DateTime())->setTime(16, 30))>
+    schedule_57_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 30))>
+        endTime: <((new \DateTime())->setTime(17, 00))>
+    schedule_58_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 00))>
+        endTime: <((new \DateTime())->setTime(17, 30))>
+    schedule_59_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 30))>
+        endTime: <((new \DateTime())->setTime(18, 00))>
+    schedule_60_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 00))>
+        endTime: <((new \DateTime())->setTime(18, 30))>
+    schedule_61_{Monday, Tuesday, Thursday, Friday}:
+        doctor: "@doctor_3"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 30))>
+        endTime: <((new \DateTime())->setTime(19, 00))>
 
+    #doctor 4
+    schedule_63_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 00))>
+        endTime: <((new \DateTime())->setTime(10, 30))>
+    schedule_64_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 30))>
+        endTime: <((new \DateTime())->setTime(11, 00))>
+    schedule_65_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 00))>
+        endTime: <((new \DateTime())->setTime(11, 30))>
+    schedule_66_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 30))>
+        endTime: <((new \DateTime())->setTime(12, 00))>
+    schedule_67_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 00))>
+        endTime: <((new \DateTime())->setTime(12, 30))>
+    schedule_68_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 30))>
+        endTime: <((new \DateTime())->setTime(13, 00))>
+    schedule_69_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 00))>
+        endTime: <((new \DateTime())->setTime(13, 30))>
+    schedule_70_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 30))>
+        endTime: <((new \DateTime())->setTime(14, 00))>
+    schedule_71_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 00))>
+        endTime: <((new \DateTime())->setTime(14, 30))>
+    schedule_72_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 30))>
+        endTime: <((new \DateTime())->setTime(15, 00))>
+    schedule_73_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 00))>
+        endTime: <((new \DateTime())->setTime(15, 30))>
+    schedule_74_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 30))>
+        endTime: <((new \DateTime())->setTime(16, 00))>
+    schedule_76_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 00))>
+        endTime: <((new \DateTime())->setTime(16, 30))>
+    schedule_77_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 30))>
+        endTime: <((new \DateTime())->setTime(17, 00))>
+    schedule_78_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 00))>
+        endTime: <((new \DateTime())->setTime(17, 30))>
+    schedule_79_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 30))>
+        endTime: <((new \DateTime())->setTime(18, 00))>
+    schedule_80_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 00))>
+        endTime: <((new \DateTime())->setTime(18, 30))>
+    schedule_81_{Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_4"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 30))>
+        endTime: <((new \DateTime())->setTime(19, 00))>
+
+    #doctor 5
+    schedule_83_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 00))>
+        endTime: <((new \DateTime())->setTime(10, 30))>
+    schedule_84_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 30))>
+        endTime: <((new \DateTime())->setTime(11, 00))>
+    schedule_85_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 00))>
+        endTime: <((new \DateTime())->setTime(11, 30))>
+    schedule_86_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 30))>
+        endTime: <((new \DateTime())->setTime(12, 00))>
+    schedule_87_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 00))>
+        endTime: <((new \DateTime())->setTime(12, 30))>
+    schedule_88_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 30))>
+        endTime: <((new \DateTime())->setTime(13, 00))>
+    schedule_89_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 00))>
+        endTime: <((new \DateTime())->setTime(13, 30))>
+    schedule_90_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 30))>
+        endTime: <((new \DateTime())->setTime(14, 00))>
+    schedule_91_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 00))>
+        endTime: <((new \DateTime())->setTime(14, 30))>
+    schedule_92_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 30))>
+        endTime: <((new \DateTime())->setTime(15, 00))>
+    schedule_93_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 00))>
+        endTime: <((new \DateTime())->setTime(15, 30))>
+    schedule_94_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 30))>
+        endTime: <((new \DateTime())->setTime(16, 00))>
+    schedule_96_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 00))>
+        endTime: <((new \DateTime())->setTime(16, 30))>
+    schedule_97_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 30))>
+        endTime: <((new \DateTime())->setTime(17, 00))>
+    schedule_98_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 00))>
+        endTime: <((new \DateTime())->setTime(17, 30))>
+    schedule_99_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 30))>
+        endTime: <((new \DateTime())->setTime(18, 00))>
+    schedule_100_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 00))>
+        endTime: <((new \DateTime())->setTime(18, 30))>
+    schedule_101_{Monday, Tuesday, Thursday, Friday, Saturday}:
+        doctor: "@doctor_5"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 30))>
+        endTime: <((new \DateTime())->setTime(19, 00))>
+
+    #doctor 6
+
+    schedule_122_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(9, 00))>
+        endTime: <((new \DateTime())->setTime(9, 30))>
+    schedule_123_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(9, 30))>
+        endTime: <((new \DateTime())->setTime(10, 00))>
+    schedule_103_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 00))>
+        endTime: <((new \DateTime())->setTime(10, 30))>
+    schedule_104_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(10, 30))>
+        endTime: <((new \DateTime())->setTime(11, 00))>
+    schedule_105_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 00))>
+        endTime: <((new \DateTime())->setTime(11, 30))>
+    schedule_106_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(11, 30))>
+        endTime: <((new \DateTime())->setTime(12, 00))>
+    schedule_107_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 00))>
+        endTime: <((new \DateTime())->setTime(12, 30))>
+    schedule_108_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(12, 30))>
+        endTime: <((new \DateTime())->setTime(13, 00))>
+    schedule_109_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 00))>
+        endTime: <((new \DateTime())->setTime(13, 30))>
+    schedule_110_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(13, 30))>
+        endTime: <((new \DateTime())->setTime(14, 00))>
+    schedule_111_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 00))>
+        endTime: <((new \DateTime())->setTime(14, 30))>
+    schedule_112_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(14, 30))>
+        endTime: <((new \DateTime())->setTime(15, 00))>
+    schedule_113_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 00))>
+        endTime: <((new \DateTime())->setTime(15, 30))>
+    schedule_114_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(15, 30))>
+        endTime: <((new \DateTime())->setTime(16, 00))>
+    schedule_116_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 00))>
+        endTime: <((new \DateTime())->setTime(16, 30))>
+    schedule_117_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(16, 30))>
+        endTime: <((new \DateTime())->setTime(17, 00))>
+    schedule_118_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 00))>
+        endTime: <((new \DateTime())->setTime(17, 30))>
+    schedule_119_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(17, 30))>
+        endTime: <((new \DateTime())->setTime(18, 00))>
+    schedule_120_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 00))>
+        endTime: <((new \DateTime())->setTime(18, 30))>
+    schedule_121_{Monday, Tuesday, Friday, Saturday}:
+        doctor: "@doctor_6"
+        day: <current()>
+        startTime: <((new \DateTime())->setTime(18, 30))>
+        endTime: <((new \DateTime())->setTime(19, 00))>
