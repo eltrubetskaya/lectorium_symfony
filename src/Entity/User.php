@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -77,9 +78,17 @@ class User implements UserInterface
      */
     private $apiToken;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Appointment", mappedBy="user")
+     *
+     */
+    private $appointments;
+
     public function __construct()
     {
         $this->setRoles(['ROLE_USER']);
+        $this->appointments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -266,4 +275,11 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getAppointments(): ArrayCollection
+    {
+        return $this->appointments;
+    }
 }
