@@ -2,14 +2,14 @@
 
 namespace App\Normalizer;
 
-use App\Entity\Schedule;
+use App\Entity\Appointment;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Exception\LogicException;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerAwareInterface;
 use Symfony\Component\Serializer\SerializerAwareTrait;
 
-class ScheduleNormalizer implements NormalizerInterface, SerializerAwareInterface
+class AppointmentNormalizer implements NormalizerInterface, SerializerAwareInterface
 {
     use SerializerAwareTrait;
 
@@ -23,15 +23,15 @@ class ScheduleNormalizer implements NormalizerInterface, SerializerAwareInterfac
      */
     public function normalize($object, $format = null, array $context = [])
     {
-        /** @var Schedule $schedule */
-        $schedule = &$object;
+        /** @var Appointment $appointment */
+        $appointment = &$object;
         $json = new \ArrayObject([
-            'id' => $schedule->getId(),
-            'doctor' => $schedule->getDoctor()->getId(),
-            'day' => $schedule->getDay(),
-            'startTime' => $schedule->getStartTime()->format('H:i'),
-            'endTime' => $schedule->getEndTime()->format('H:i'),
-            'enabled' => $schedule->isEnabled()
+            'id' => $appointment->getId(),
+            'doctor' => $appointment->getSchedule()->getDoctor(),
+            'day' => $appointment->getSchedule()->getDay(),
+            'startTime' => $appointment->getSchedule()->getStartTime()->format('H:i'),
+            'endTime' => $appointment->getSchedule()->getEndTime()->format('H:i'),
+            'status' => $appointment->getStatus(),
         ]);
 
         if (!$this->serializer instanceof NormalizerInterface) {
@@ -49,6 +49,6 @@ class ScheduleNormalizer implements NormalizerInterface, SerializerAwareInterfac
      */
     public function supportsNormalization($data, $format = null)
     {
-        return $data instanceof Schedule;
+        return $data instanceof Appointment;
     }
 }

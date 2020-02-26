@@ -10,6 +10,9 @@ security:
             entity:
                 class: App\Entity\User
                 property: username
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN]
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -17,7 +20,9 @@ security:
         api:
             provider: api_provider
             anonymous: ~
-            logout: ~
+            pattern: ^/api
+            stateless: true
+            security: true
 
             guard:
                 authenticators:
@@ -32,5 +37,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/api/user, roles: ROLE_USER }
+         - { path: ^/api/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/api/doctor, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/api/appointment, roles: ROLE_USER }
          - { path: ^/api/logout$, roles: ROLE_USER }

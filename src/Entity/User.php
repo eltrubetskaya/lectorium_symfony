@@ -282,4 +282,30 @@ class User implements UserInterface
     {
         return $this->appointments;
     }
+
+    /**
+     * @param Appointment $appointment
+     *
+     * @return $this
+     */
+    public function addAppointment(Appointment $appointment)
+    {
+        $appointment->setUser($this);
+        $this->appointments->add($appointment);
+
+        return $this;
+    }
+
+    /**
+     * @param Appointment $appointment
+     */
+    public function removeAppointment(Appointment $appointment)
+    {
+        $this->appointments->removeElement($appointment);
+    }
+
+    public function getFullName()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
+    }
 }

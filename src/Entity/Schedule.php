@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,9 +47,17 @@ class Schedule
      */
     private $doctor;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Appointment", mappedBy="schedule")
+     *
+     */
+    private $appointments;
+
     public function __construct()
     {
         $this->enabled = true;
+        $this->appointments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -132,5 +141,34 @@ class Schedule
         $this->endTime = $value;
 
         return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAppointments(): ArrayCollection
+    {
+        return $this->appointments;
+    }
+
+    /**
+     * @param Appointment $appointment
+     *
+     * @return $this
+     */
+    public function addAppointment(Appointment $appointment)
+    {
+        $appointment->setSchedule($this);
+        $this->appointments->add($appointment);
+
+        return $this;
+    }
+
+    /**
+     * @param Appointment $appointment
+     */
+    public function removeAppointment(Appointment $appointment)
+    {
+        $this->appointments->removeElement($appointment);
     }
 }
