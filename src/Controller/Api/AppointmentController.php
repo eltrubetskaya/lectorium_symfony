@@ -126,4 +126,51 @@ class AppointmentController extends AbstractController
 
         return $this->json(['appointments' => $appointments], Response::HTTP_OK);
     }
+
+    /**
+     * @Route("/{id}/cancel", name="appointment_cancel", methods={"PUT"})
+     *
+     * @SWG\Response(
+     *     response=204,
+     *     description="Appointment cancelled",
+     * )
+     * @SWG\Response(
+     *     response=401,
+     *     description="API key is missing or invalid",
+     * )
+     * @SWG\Response(
+     *     response=403,
+     *     description="Access token does not have the required scope",
+     * )
+     * @SWG\Response(
+     *     response=404,
+     *     description="Appointment not found",
+     * )
+     * @SWG\Tag(name="Appointment")
+     * @Security(name="ApiKeyAuth")
+     *
+     * @param AppointmentRepository $repository
+     * @param int $id
+     *
+     * @return JsonResponse
+     */
+    public function cancel(AppointmentRepository $repository, int $id): JsonResponse
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        /** @var Appointment $appointment */
+        $appointment = $repository->findOneBy([
+            'id' => $id,
+            'user' => $user
+        ]);
+        if ($appointment) {
+            $appointment->setStatus(Appointment::STATUS_CANCELLED);
+            $appointment->getSchedule()->setEnabled(true);
+            $this->getDoctrine()->getManager()->flush();
+
+            return new JsonResponse([], Response::HTTP_NO_CONTENT);
+        }
+
+        return new JsonResponse(['message' => 'Appointment not found.'], Response::HTTP_NOT_FOUND);
+    }
 }
