@@ -4,6 +4,10 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    braintree_environment: '%env(BRAINTREE_ENVIRONMENT)%'
+    braintree_merchant_id: '%env(BRAINTREE_MERCHANT_ID)%'
+    braintree_public_key: '%env(BRAINTREE_PUBLIC_KEY)%'
+    braintree_private_key: '%env(BRAINTREE_PRIVATE_KEY)%'
 
 services:
     # default configuration for services in *this* file
@@ -29,3 +33,11 @@ services:
     App\Services\Mailer:
         arguments:
             - '%env(EMAIL_FROM)%'
+
+    App\Service\Payment\Braintree\BraintreeService:
+        public: true
+        arguments:
+        - '%braintree_environment%'
+        - '%braintree_merchant_id%'
+        - '%braintree_public_key%'
+        - '%braintree_private_key%'

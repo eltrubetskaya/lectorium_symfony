@@ -79,6 +79,11 @@ class User implements UserInterface
     private $apiToken;
 
     /**
+     * @ORM\Column(type="string", unique=true, nullable=true)
+     */
+    private $customerId;
+
+    /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="Appointment", mappedBy="user")
      *
@@ -307,5 +312,21 @@ class User implements UserInterface
     public function getFullName()
     {
         return $this->getFirstName() . ' ' . $this->getLastName();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomerId()
+    {
+        return $this->customerId;
+    }
+
+    /**
+     * @param mixed $customerId
+     */
+    public function setCustomerId($customerId): void
+    {
+        $this->customerId = $customerId;
     }
 }
