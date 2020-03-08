@@ -47,6 +47,20 @@ class Appointment
     private $status;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $transactionId;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $refunded;
+
+    /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="appointments")
      */
@@ -62,6 +76,7 @@ class Appointment
     {
         $this->createdAt = new \DateTime('now');
         $this->setStatus(self::STATUS_CREATED);
+        $this->setRefunded(false);
     }
 
     public function getId(): ?int
@@ -134,5 +149,37 @@ class Appointment
         $this->schedule = $value;
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTransactionId(): ?string
+    {
+        return $this->transactionId;
+    }
+
+    /**
+     * @param string $transactionId
+     */
+    public function setTransactionId(string $transactionId): void
+    {
+        $this->transactionId = $transactionId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRefunded(): bool
+    {
+        return $this->refunded;
+    }
+
+    /**
+     * @param bool $refunded
+     */
+    public function setRefunded(bool $refunded): void
+    {
+        $this->refunded = $refunded;
     }
 }

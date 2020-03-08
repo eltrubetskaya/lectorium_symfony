@@ -32,6 +32,8 @@ class AppointmentNormalizer implements NormalizerInterface, SerializerAwareInter
             'startTime' => $appointment->getSchedule()->getStartTime()->format('H:i'),
             'endTime' => $appointment->getSchedule()->getEndTime()->format('H:i'),
             'status' => $appointment->getStatus(),
+            'transactionId' => $appointment->getTransactionId(),
+            'isRefunded' => $appointment->isRefunded()
         ]);
 
         if (!$this->serializer instanceof NormalizerInterface) {

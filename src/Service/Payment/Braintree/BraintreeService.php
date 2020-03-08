@@ -198,7 +198,6 @@ class BraintreeService
     public function sale(string $nonce, float $amount)
     {
         try {
-
             return $this->gateway->transaction()->sale([
                 'paymentMethodNonce' => $nonce,
                 'amount' => $amount,
