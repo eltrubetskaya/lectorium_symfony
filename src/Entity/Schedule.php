@@ -146,7 +146,7 @@ class Schedule
     /**
      * @return ArrayCollection
      */
-    public function getAppointments(): ArrayCollection
+    public function getAppointments()
     {
         return $this->appointments;
     }

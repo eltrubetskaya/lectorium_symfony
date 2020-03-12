@@ -2,7 +2,9 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\Appointment;
 use App\Entity\Doctor;
+use App\Entity\Schedule;
 use App\Repository\DoctorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,11 +45,28 @@ class DoctorController extends AbstractController
      * )
      * @SWG\Tag(name="Doctor")
      *
-     * @param DoctorRepository $repository
+     * @param Doctor $doctor
      * @return JsonResponse
      */
     public function schedule(Doctor $doctor): JsonResponse
     {
+        $schedule = $doctor->getSchedule();
+        $currentDay = (new \DateTime('now'))->format('w');
+        /** @var Schedule $item */
+        foreach ($schedule as $item) {
+            $day = (new \DateTime('next ' . $item->getDay()))->format('w');
+            if ($day <= $currentDay) {
+                $item->setEnabled(true);
+                /** @var Appointment $appointment */
+                foreach ($item->getAppointments() as $appointment) {
+                    if ($appointment->getStatus() === Appointment::STATUS_CREATED) {
+                        $appointment->setStatus(Appointment::STATUS_COMPLETED);
+                    }
+                }
+            }
+        }
+        $this->getDoctrine()->getManager()->flush();
+
         return $this->json(['schedule' => $doctor->getSchedule()], Response::HTTP_OK);
     }
 }

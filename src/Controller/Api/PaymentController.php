@@ -127,14 +127,17 @@ class PaymentController extends AbstractController
      */
     public function sale(Request $request, int $id, BraintreeService $service, AppointmentRepository $repository): JsonResponse
     {
-        $appointmnet = $repository->find($id);
+        /** @var User $user */
+        $user = $this->getUser();
+        $appointmnet = $repository->findOneBy([
+            'id' => $id,
+            'user' => $user
+        ]);
         if (null === $appointmnet) {
             return new JsonResponse([
                 'message' => 'Appointment not found.'
             ], Response::HTTP_NOT_FOUND);
         }
-        /** @var User $user */
-        $user = $this->getUser();
         $data = json_decode($request->getContent(), false);
         if (!$data || !is_object($data)) {
             return $this->json([

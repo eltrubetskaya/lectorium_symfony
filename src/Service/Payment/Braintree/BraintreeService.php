@@ -214,19 +214,13 @@ class BraintreeService
     }
 
     /**
-     * @param PaymentReceipt $receipt
+     * @param string $transactionId
      * @return Error|Successful|array
      */
-    public function refund(PaymentReceipt $receipt)
+    public function refund(string $transactionId)
     {
         try {
-            return $this->gateway->transaction()->refund(
-                $receipt->getTransactionId(),
-                [
-                    'amount' => $receipt->getAmount(),
-                    'orderId' => $receipt->getOrderId()
-                ]
-            );
+            return $this->gateway->transaction()->refund($transactionId);
         } catch (\Exception $e) {
             $this->logger->critical('Braintree_Exception: ' . $e->getMessage());
 

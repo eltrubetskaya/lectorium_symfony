@@ -6,6 +6,9 @@ use App\Entity\Appointment;
 use App\Entity\Schedule;
 use App\Entity\User;
 use App\Repository\AppointmentRepository;
+use App\Service\Payment\Braintree\BraintreeService;
+use Braintree\Result\Error;
+use Braintree\Result\Successful;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +24,8 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class AppointmentController extends AbstractController
 {
+    public const TRANSACTION_ERROR_CANNOT_REFUND = 'Cannot refund transaction unless it is settled.';
+
     /**
      * @Route("/create", name="appointment_create", methods={"POST"})
      *
@@ -135,6 +140,10 @@ class AppointmentController extends AbstractController
      *     description="Appointment cancelled",
      * )
      * @SWG\Response(
+     *     response=400,
+     *     description="Payment errors...",
+     * )
+     * @SWG\Response(
      *     response=401,
      *     description="API key is missing or invalid",
      * )
@@ -154,7 +163,7 @@ class AppointmentController extends AbstractController
      *
      * @return JsonResponse
      */
-    public function cancel(AppointmentRepository $repository, int $id): JsonResponse
+    public function cancel(AppointmentRepository $repository, int $id, BraintreeService $service): JsonResponse
     {
         /** @var User $user */
         $user = $this->getUser();
@@ -164,11 +173,49 @@ class AppointmentController extends AbstractController
             'user' => $user
         ]);
         if ($appointment) {
-            $appointment->setStatus(Appointment::STATUS_CANCELLED);
-            $appointment->getSchedule()->setEnabled(true);
-            $this->getDoctrine()->getManager()->flush();
+            $result = $service->refund($appointment->getTransactionId());
+            if ($result instanceof Error) {
+                foreach ($result->errors->deepAll() as $error) {
+                    $response['errors'][] = [
+                        'message' => $error->message,
+                        'code' => $error->code,
+                        'attribute' => $error->attribute,
+                    ];
+                }
+                $response[] = [
+                    'message' => $result->message
+                ];
+                if ($result->message === self::TRANSACTION_ERROR_CANNOT_REFUND) {
+                    $resultVoid = $service->void($appointment->getTransactionId());
+                    if ($resultVoid instanceof Error) {
+                        foreach ($resultVoid->errors->deepAll() as $error) {
+                            $responseVoid['errors'][] = [
+                                'message' => $error->message,
+                                'code' => $error->code,
+                                'attribute' => $error->attribute,
+                            ];
+                        }
+                        $responseVoid[] = [
+                            'message' => $resultVoid->message
+                        ];
+                        $response = array_merge($response, $responseVoid);
+                    }
+                }
 
-            return new JsonResponse([], Response::HTTP_NO_CONTENT);
+                return $this->json([
+                    'message' => json_encode($response),
+                ], Response::HTTP_BAD_REQUEST);
+            }
+            if ($result instanceof Successful) {
+                $appointment
+                    ->setStatus(Appointment::STATUS_CANCELLED)
+                    ->setRefunded(true)
+                ;
+                $appointment->getSchedule()->setEnabled(true);
+                $this->getDoctrine()->getManager()->flush();
+
+                return new JsonResponse([], Response::HTTP_NO_CONTENT);
+            }
         }
 
         return new JsonResponse(['message' => 'Appointment not found.'], Response::HTTP_NOT_FOUND);
