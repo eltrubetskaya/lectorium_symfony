@@ -47,6 +47,7 @@ class DoctorController extends AbstractController
      *
      * @param Doctor $doctor
      * @return JsonResponse
+     * @throws \Exception
      */
     public function schedule(Doctor $doctor): JsonResponse
     {
@@ -55,7 +56,7 @@ class DoctorController extends AbstractController
         /** @var Schedule $item */
         foreach ($schedule as $item) {
             $day = (new \DateTime('next ' . $item->getDay()))->format('w');
-            if ($day <= $currentDay) {
+            if ($day < $currentDay) {
                 $item->setEnabled(true);
                 /** @var Appointment $appointment */
                 foreach ($item->getAppointments() as $appointment) {

@@ -173,6 +173,15 @@ class AppointmentController extends AbstractController
             'user' => $user
         ]);
         if ($appointment) {
+            if (null === $appointment->getTransactionId()) {
+                $appointment
+                    ->setStatus(Appointment::STATUS_CANCELLED)
+                ;
+                $appointment->getSchedule()->setEnabled(true);
+                $this->getDoctrine()->getManager()->flush();
+
+                return new JsonResponse([], Response::HTTP_NO_CONTENT);
+            }
             $result = $service->refund($appointment->getTransactionId());
             if ($result instanceof Error) {
                 foreach ($result->errors->deepAll() as $error) {
@@ -199,6 +208,20 @@ class AppointmentController extends AbstractController
                             'message' => $resultVoid->message
                         ];
                         $response = array_merge($response, $responseVoid);
+
+                        return $this->json([
+                            'message' => json_encode($response),
+                        ], Response::HTTP_BAD_REQUEST);
+                    }
+                    if ($resultVoid instanceof Successful) {
+                        $appointment
+                            ->setStatus(Appointment::STATUS_CANCELLED)
+                            ->setRefunded(true)
+                        ;
+                        $appointment->getSchedule()->setEnabled(true);
+                        $this->getDoctrine()->getManager()->flush();
+
+                        return new JsonResponse([], Response::HTTP_NO_CONTENT);
                     }
                 }
 
